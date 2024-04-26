@@ -17,25 +17,34 @@ def calc_average_temperature(numsFiltered):
     return avg
 
 def calc_min_max_temperature(numsFiltered):
-    min = numsFiltered[0]
-    max = numsFiltered[0]
+    min_temp = numsFiltered[0]
+    max_temp = numsFiltered[0]
     for i in numsFiltered:
-        if min > i:
-            min = i
-        if max < i:
-            max = i  
-    return [min,max]
+        if min_temp > i:
+            min_temp = i
+        if max_temp < i:
+            max_temp = i  
+    return [min_temp,max_temp]
+
+def sort_temperature(numsFiltered):
+    numsFiltered.sort()
+    return numsFiltered
 
 def calc_median_temperature(numsFiltered):
-    numsFiltered.sort()
     if len(numsFiltered) % 2:
         median = numsFiltered[round(len(numsFiltered)/2)]   
     if len(numsFiltered) % 2 == 0:
-        median = (((numsFiltered[int(len(numsFiltered)/2)] + numsFiltered[int(len(numsFiltered)/2 - 1)]) /2))
+        median = (((numsFiltered[len(numsFiltered)//2] + numsFiltered[len(numsFiltered)//2 - 1]) / 2))
     return median
 
-display_main_menu()
-userInputs = get_user_input()
-print("Average temperature = " + str(calc_average_temperature(userInputs)))
-print("Minimum and Maximum temperature = " + str(calc_min_max_temperature(userInputs)))
-print("Median = " + str(calc_median_temperature(userInputs)))
+def main():
+    print("ET0735 (DevOps for AIoT) - Lab 2 - Introduction to Python")
+    display_main_menu()
+    userInputs = get_user_input()
+    print("Average temperature = " + str(calc_average_temperature(userInputs)))
+    print("Sorted temperature = " + str(sort_temperature(userInputs)))
+    print("Minimum and Maximum temperature = " + str(calc_min_max_temperature(userInputs)))
+    print("Median = " + str(calc_median_temperature(userInputs)))
+
+if __name__ == "__main__":
+    main()
